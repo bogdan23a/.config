@@ -1,0 +1,159 @@
+{
+    "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
+    "version": 2,
+    "palette": {
+      "space": "#101317",
+      "bromium": "#37d99e",
+      "bromium-dark": "#0f3c2c",
+      "beige": "#E5D487",
+      "critical": "#e87979",
+      "pistachio-green": "#9ece6a",
+      "terminal-yellow": "#E5D487",
+      "terminal-blue": "#5FB0FC",
+      "terminal-magenta": "#C397D8",
+      "terminal-red": "#f7768e",
+      "light-sky-blue": "#7dcfff",
+      "white-blue": "#a9b1d6"
+    },
+    "blocks": [
+      {
+        "type": "prompt",
+        "alignment": "left",
+        "segments": [
+          {
+            "type": "session",
+            "style": "plain",
+            "foreground": "p:bromium",
+            "template": "\ueb99 {{ .UserName }} on"
+          },
+          {
+            "type": "path",
+            "style": "plain",
+            "foreground": "p:critical",
+            "template": " \uf07b {{ .Path }} ",
+            "properties": {
+              "folder_separator_icon": "/",
+              "style": "full"
+            }
+          },
+          {
+            "type": "git",
+            "style": "plain",
+            "foreground": "p:bromium-dark",
+            "foreground_templates": [
+              "{{ if or (.Working.Changed) (.Staging.Changed) }}p:critical{{ end }}",
+              "{{ if and (gt .Ahead 0) (gt .Behind 0)}}p:beige {{ end }}",
+              "{{ if gt .Ahead 0 }}p:beige{{ end }}",
+              "{{ if gt .Behind 0 }}p:beige{{ end }}"
+            ],
+            "template": "({{ .HEAD}})",
+            "properties": {
+              "fetch_status": true,
+              "branch_icon": "\ue725 "
+            }
+          }
+        ]
+      },
+      {
+        "alignment": "right",
+        "overflow": "hide",
+        "segments": [
+          {
+            "type": "node",
+            "style": "plain",
+            "foreground": "p:pistachio-green",
+            "template": "\ue718 {{ .PackageManagerIcon }} "
+          },
+          {
+            "type": "php",
+            "style": "plain",
+            "foreground": "p:terminal-blue",
+            "template": "\ue73d {{ .PackageManagerIcon }} "
+          },
+          {
+            "type": "python",
+            "style": "plain",
+            "foreground": "p:terminal-yellow",
+            "template": "\uE235 {{ .PackageManagerIcon }}"
+          },
+          {
+            "type": "julia",
+            "style": "plain",
+            "foreground": "p:terminal-magenta",
+            "template": "\uE624 {{ .PackageManagerIcon }}"
+          },
+          {
+            "type": "ruby",
+            "style": "plain",
+            "foreground": "p:terminal-red",
+            "template": "\uE791 {{ .PackageManagerIcon}}"
+          },
+          {
+            "type": "go",
+            "style": "plain",
+            "foreground": "p:light-sky-blue",
+            "template": "\uFCD1 {{ .PackageManagerIcon}}"
+          },
+          {
+            "type": "java",
+            "style": "plain",
+            "foreground": "p:critical",
+            "template": "\uE738 {{.PackageManagerIcon}}"
+          },
+          {
+            "type": "command",
+            "style": "plain",
+            "foreground": "p:bromium",
+            "properties": {
+              "command": "git log --pretty=format:%cr -1 || date +%H:%M:%S",
+              "shell": "bash"
+            }
+          }
+        ],
+        "type": "prompt"
+      },
+      {
+        "type": "prompt",
+        "alignment": "left",
+        "segments": [
+          {
+            "type": "root",
+            "style": "plain",
+            "foreground": "p:beige",
+            "template": "\ue3bf "
+          },
+          {
+            "type": "text",
+            "style": "plain",
+            "foreground": "p:bromium",
+            "template": "\u279c "
+          }
+        ],
+        "newline": true
+      }
+    ],
+    "secondary_prompt": {
+      "background": "transparent",
+      "foreground": "p:bromium",
+      "template": "\u279c "
+    },
+    "transient_prompt": {
+      "background": "p:t-background",
+      "foreground": "p:bromium",
+      "template": "\u279c "
+    },
+    "valid_line": {
+      "background": "transparent",
+      "foreground": "#ffffff",
+      "template": "<#e0def4,#286983>\uf42e </><#286983,transparent>\ue0b4</> "
+    },
+    "error_line": {
+        "background": "p:critical",
+        "foreground": "#ffffff",
+        "template": "<#eb6f92,#286983>\ue009 </><#286983,transparent>\ue0b4</> "
+    },
+    "accent_color": "p:bromium",
+    "console_title_template": " {{ .Folder }} :: {{if .Root}}Admin{{end}}",
+    "terminal_background": "p:space"
+  }
+  
